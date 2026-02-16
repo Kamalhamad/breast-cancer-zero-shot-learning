@@ -1,81 +1,87 @@
-Breast Cancer Classification using Inductive Zero-Shot Learning
-Overview
+# Breast Cancer Classification using Inductive Zero-Shot Learning
+
+## Overview
 
 This project implements an Inductive Zero-Shot Learning (ZSL) framework for breast cancer histopathology image classification using the BreakHis dataset.
 
 The objective was to evaluate whether semantic embeddings can enable classification of unseen tumor subclasses without labeled training examples.
 
-Dataset
+---
 
-BreakHis dataset
+## Dataset
 
-7,900+ histopathological images
+- BreakHis dataset  
+- 7,900+ histopathological images  
+- 8 tumor subclasses  
+- Benign and malignant categories  
+- Stratified sampling (250 samples per class)  
 
-8 tumor subclasses
+---
 
-Benign and malignant categories
+## Methodology
 
-Stratified sampling (250 samples per class)
+### 1. Feature Extraction
 
-Methodology
-1. Feature Extraction
+- Pretrained ResNet50 (ImageNet weights)  
+- Extracted both intermediate and final layer features  
+- Combined representations for enhanced abstraction  
 
-Pretrained ResNet50 (ImageNet weights)
+### 2. Semantic Embeddings
 
-Extracted both intermediate and final layer features
+- Word2Vec embeddings (vector size = 100)  
+- Generated embeddings for both seen and unseen classes  
+- Embedded class labels into shared semantic space  
 
-Combined representations for enhanced abstraction
+### 3. Inductive ZSL Framework
 
-2. Semantic Embeddings
+- Logistic Regression classifier trained on seen classes  
+- Predicted embedding vectors mapped to closest unseen class  
+- Evaluation performed on unseen classes only  
 
-Word2Vec embeddings (vector size = 100)
+---
 
-Generated embeddings for both seen and unseen classes
+## Results
 
-Embedded class labels into shared semantic space
+- Accuracy on unseen classes (Benign vs Malignant): **60%**  
+- Demonstrated generalization to unseen tumor types  
+- Confusion matrix analysis performed  
 
-3. Inductive ZSL Framework
+---
 
-Logistic Regression classifier trained on seen classes
+## Tech Stack
 
-Predicted embedding vectors mapped to closest unseen class
+- Python  
+- TensorFlow / Keras  
+- Scikit-learn  
+- Gensim (Word2Vec)  
+- NumPy  
+- Pandas  
 
-Evaluation performed on unseen classes only
+---
 
-Results
+## Key Learnings
 
-Accuracy on unseen classes (Benign vs Malignant): 60%
+- Embedding alignment between visual and semantic spaces  
+- Transfer learning for feature extraction  
+- Zero-shot inference pipeline design  
+- Handling computational constraints in deep learning  
 
-Demonstrated generalization to unseen tumor types
+---
 
-Confusion matrix analysis performed
+## How to Run
 
-Tech Stack
+```bash
+pip install -r requirements.txt
+python src/train.py
+python src/zsl_inference.py
+```
 
-Python
+---
 
-TensorFlow / Keras
+## Future Improvements
 
-Scikit-learn
-
-Gensim (Word2Vec)
-
-NumPy / Pandas
-
-Key Learnings
-
-Embedding alignment between visual and semantic spaces
-
-Transfer learning for feature extraction
-
-Zero-shot inference pipeline
-
-Handling computational constraints in deep learning
-
-Future Improvements
-
-Replace logistic regression with deep metric learning
-
-Use contextual embeddings (BERT-based)
-
-Deploy inference API using FastAPI
+- Replace Logistic Regression with deep metric learning  
+- Use contextual embeddings (BERT-based)  
+- Deploy inference API using FastAPI  
+- Perform hyperparameter optimization  
+- Explore ensemble methods  
