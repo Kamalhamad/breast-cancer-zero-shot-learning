@@ -1,22 +1,81 @@
-# Breast Cancer Detection Using Zero-Shot Learning
+Breast Cancer Classification using Inductive Zero-Shot Learning
+Overview
 
-## Abstract
-The rapid advancement of artificial intelligence (AI) and machine learning (ML) has significantly enhanced the capabilities of image classification across various domains, including medical imaging. However, traditional supervised learning models face critical challenges, particularly in medical imaging, due to the dependency on large labeled datasets, which are often difficult, expensive, and time-consuming to obtain. This thesis explores the application of inductive Zero-Shot Learning (ZSL) to address these limitations, specifically focusing on the classification of breast tumors using the BreakHis dataset.
+This project implements an Inductive Zero-Shot Learning (ZSL) framework for breast cancer histopathology image classification using the BreakHis dataset.
 
-## Methodology
-Zero-Shot Learning (ZSL) enables models to recognize and classify unseen classes by leveraging auxiliary information such as semantic embeddings, without requiring labeled examples of those classes during training. This research proposes a modified inductive ZSL model tailored to the BreakHis dataset, which contains histopathological images of breast tumors categorized into eight distinct classes. The model employs a ResNet50 architecture for feature extraction and utilizes Word2Vec for generating semantic embeddings of class labels. A Logistic Regression classifier is trained on the features of seen classes and their corresponding semantic embeddings, enabling the model to generalize to unseen classes during inference.
+The objective was to evaluate whether semantic embeddings can enable classification of unseen tumor subclasses without labeled training examples.
 
-## Results
-The proposed approach demonstrates the potential of ZSL in medical imaging, achieving reasonable accuracy in classifying unseen tumor classes into benign and malignant categories. Despite computational constraints, the study suggests that with advanced resources, further improvements could be achieved through deeper neural networks, more sophisticated embeddings, and advanced optimization techniques.
+Dataset
 
-## Repository Contents
-- **Thesis Document**: [Master Thesis. Kamal Hamad.docx](docs/Master%20Thesis.%20Kamal%20Hamad.docx)
-- **Code and Scripts**: Relevant code and scripts used in this project.
-- **Datasets**: Links or references to the BreakHis dataset used in the study.
+BreakHis dataset
 
-## Citation
-Hamad, K. S. H. (2024). Breast Cancer Detection Using Zero-Shot Learning. Master’s thesis, University of Europe for Applied Sciences.
+7,900+ histopathological images
 
-## Contact
-For any questions or collaborations, please contact Kamal Siddig Hussain Hamad at [Kamal.hamad@ue-germany.de].
+8 tumor subclasses
 
+Benign and malignant categories
+
+Stratified sampling (250 samples per class)
+
+Methodology
+1. Feature Extraction
+
+Pretrained ResNet50 (ImageNet weights)
+
+Extracted both intermediate and final layer features
+
+Combined representations for enhanced abstraction
+
+2. Semantic Embeddings
+
+Word2Vec embeddings (vector size = 100)
+
+Generated embeddings for both seen and unseen classes
+
+Embedded class labels into shared semantic space
+
+3. Inductive ZSL Framework
+
+Logistic Regression classifier trained on seen classes
+
+Predicted embedding vectors mapped to closest unseen class
+
+Evaluation performed on unseen classes only
+
+Results
+
+Accuracy on unseen classes (Benign vs Malignant): 60%
+
+Demonstrated generalization to unseen tumor types
+
+Confusion matrix analysis performed
+
+Tech Stack
+
+Python
+
+TensorFlow / Keras
+
+Scikit-learn
+
+Gensim (Word2Vec)
+
+NumPy / Pandas
+
+Key Learnings
+
+Embedding alignment between visual and semantic spaces
+
+Transfer learning for feature extraction
+
+Zero-shot inference pipeline
+
+Handling computational constraints in deep learning
+
+Future Improvements
+
+Replace logistic regression with deep metric learning
+
+Use contextual embeddings (BERT-based)
+
+Deploy inference API using FastAPI
