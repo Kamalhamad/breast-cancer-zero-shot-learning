@@ -6,7 +6,7 @@ This project implements an Inductive Zero-Shot Learning (ZSL) framework for brea
 
 The objective was to evaluate whether semantic embeddings can enable classification of unseen tumor subclasses without labeled training examples.
 
-The project explores how alignment between visual feature representations and semantic embeddings can extend classification capability beyond traditional supervised learning boundaries.
+This project explores how alignment between visual feature representations and semantic embeddings can extend classification capability beyond traditional supervised learning boundaries.
 
 ---
 
@@ -75,3 +75,43 @@ Images
 ---
 
 ## Project Structure
+
+```
+src/
+├── data_processing.py
+├── feature_extraction.py
+├── embeddings.py
+├── train.py
+├── zsl_inference.py
+└── evaluation.py
+```
+
+---
+
+## How to Run
+
+```bash
+pip install -r requirements.txt
+python src/train.py
+python src/zsl_inference.py
+```
+
+---
+
+## Key Learnings
+
+- Alignment between visual and semantic embedding spaces  
+- Transfer learning for robust feature extraction  
+- Modular pipeline design for machine learning workflows  
+- Zero-shot inference strategy for unseen class prediction  
+- Working under computational constraints  
+
+---
+
+## Future Improvements
+
+- Replace Logistic Regression with deep metric learning  
+- Use contextual embeddings (e.g., BERT-based representations)  
+- Deploy inference API using FastAPI  
+- Perform systematic hyperparameter optimization  
+- Explore ensemble methods for improved robustness  
