@@ -6,6 +6,8 @@ This project implements an Inductive Zero-Shot Learning (ZSL) framework for brea
 
 The objective was to evaluate whether semantic embeddings can enable classification of unseen tumor subclasses without labeled training examples.
 
+The project explores how alignment between visual feature representations and semantic embeddings can extend classification capability beyond traditional supervised learning boundaries.
+
 ---
 
 ## Dataset
@@ -23,28 +25,41 @@ The objective was to evaluate whether semantic embeddings can enable classificat
 ### 1. Feature Extraction
 
 - Pretrained ResNet50 (ImageNet weights)  
-- Extracted both intermediate and final layer features  
+- Extracted intermediate and final layer features  
 - Combined representations for enhanced abstraction  
 
 ### 2. Semantic Embeddings
 
 - Word2Vec embeddings (vector size = 100)  
-- Generated embeddings for both seen and unseen classes  
-- Embedded class labels into shared semantic space  
+- Generated embeddings for seen and unseen classes  
+- Embedded class labels into a shared semantic space  
 
-### 3. Inductive ZSL Framework
+### 3. Inductive Zero-Shot Learning Framework
 
 - Logistic Regression classifier trained on seen classes  
 - Predicted embedding vectors mapped to closest unseen class  
-- Evaluation performed on unseen classes only  
+- Evaluation performed exclusively on unseen classes  
+
+---
+
+## Pipeline Summary
+
+Images  
+→ ResNet50 Feature Extraction  
+→ Feature Combination  
+→ Word2Vec Semantic Embeddings  
+→ Logistic Regression Classifier  
+→ Embedding Similarity Mapping  
+→ Unseen Class Prediction  
 
 ---
 
 ## Results
 
-- Accuracy on unseen classes (Benign vs Malignant): **60%**  
-- Demonstrated generalization to unseen tumor types  
-- Confusion matrix analysis performed  
+- Unseen class classification accuracy (Benign vs Malignant): **60%**  
+- Demonstrated generalization capability without exposure to unseen subclasses during training  
+- Evaluated using accuracy metrics and confusion matrix analysis  
+- Highlighted strengths and limitations of inductive zero-shot transfer in medical imaging  
 
 ---
 
@@ -59,29 +74,4 @@ The objective was to evaluate whether semantic embeddings can enable classificat
 
 ---
 
-## Key Learnings
-
-- Embedding alignment between visual and semantic spaces  
-- Transfer learning for feature extraction  
-- Zero-shot inference pipeline design  
-- Handling computational constraints in deep learning  
-
----
-
-## How to Run
-
-```bash
-pip install -r requirements.txt
-python src/train.py
-python src/zsl_inference.py
-```
-
----
-
-## Future Improvements
-
-- Replace Logistic Regression with deep metric learning  
-- Use contextual embeddings (BERT-based)  
-- Deploy inference API using FastAPI  
-- Perform hyperparameter optimization  
-- Explore ensemble methods  
+## Project Structure
