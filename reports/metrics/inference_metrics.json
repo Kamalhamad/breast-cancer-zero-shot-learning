@@ -1,0 +1,17 @@
+{
+  "seed": 42,
+  "synthetic_mode": true,
+  "n_samples": 40,
+  "n_features": 32,
+  "inference_accuracy": 0.475,
+  "confusion_matrix": [
+    [
+      10,
+      10
+    ],
+    [
+      11,
+      9
+    ]
+  ]
+}

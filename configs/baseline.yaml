@@ -1,0 +1,20 @@
+seed: 42
+
+train:
+  features_path: data/processed/train_features.npy
+  labels_path: data/processed/train_labels.npy
+  model_path: models/logreg_model.joblib
+  encoder_path: models/label_encoder.joblib
+  max_iter: 1000
+
+inference:
+  features_path: data/processed/test_features.npy
+  labels_path: data/processed/test_labels.npy
+
+outputs:
+  metrics_dir: reports/metrics
+  figures_dir: reports/figures
+  train_metrics_file: train_metrics.json
+  inference_metrics_file: inference_metrics.json
+  classification_report_file: classification_report.txt
+  confusion_matrix_file: confusion_matrix.png

@@ -1,117 +1,74 @@
-# Breast Cancer Classification using Inductive Zero-Shot Learning
+# Breast Cancer Zero-Shot Learning
 
-## Overview
+Portfolio-ready implementation of an **inductive zero-shot learning (ZSL)** pipeline for breast cancer histopathology classification.
 
-This project implements an Inductive Zero-Shot Learning (ZSL) framework for breast cancer histopathology image classification using the BreakHis dataset.
-
-The objective was to evaluate whether semantic embeddings can enable classification of unseen tumor subclasses without labeled training examples.
-
-This project explores how alignment between visual feature representations and semantic embeddings can extend classification capability beyond traditional supervised learning boundaries.
-
----
-
-## Dataset
-
-- BreakHis dataset  
-- 7,900+ histopathological images  
-- 8 tumor subclasses  
-- Benign and malignant categories  
-- Stratified sampling (250 samples per class)  
-
----
-
-## Methodology
-
-### 1. Feature Extraction
-
-- Pretrained ResNet50 (ImageNet weights)  
-- Extracted intermediate and final layer features  
-- Combined representations for enhanced abstraction  
-
-### 2. Semantic Embeddings
-
-- Word2Vec embeddings (vector size = 100)  
-- Generated embeddings for seen and unseen classes  
-- Embedded class labels into a shared semantic space  
-
-### 3. Inductive Zero-Shot Learning Framework
-
-- Logistic Regression classifier trained on seen classes  
-- Predicted embedding vectors mapped to closest unseen class  
-- Evaluation performed exclusively on unseen classes  
-
----
-
-## Pipeline Summary
-
-Images  
-→ ResNet50 Feature Extraction  
-→ Feature Combination  
-→ Word2Vec Semantic Embeddings  
-→ Logistic Regression Classifier  
-→ Embedding Similarity Mapping  
-→ Unseen Class Prediction  
-
----
-
-## Results
-
-- Unseen class classification accuracy (Benign vs Malignant): **60%**  
-- Demonstrated generalization capability without exposure to unseen subclasses during training  
-- Evaluated using accuracy metrics and confusion matrix analysis  
-- Highlighted strengths and limitations of inductive zero-shot transfer in medical imaging  
-
----
-
-## Tech Stack
-
-- Python  
-- TensorFlow / Keras  
-- Scikit-learn  
-- Gensim (Word2Vec)  
-- NumPy  
-- Pandas  
-
----
+## Milestone Status
+- ✅ **Milestone A:** Package restructure to `src/bczsl` + import hygiene.
+- ✅ **Milestone B:** Config-driven CLI, deterministic seeds, and metrics artifact scaffolding.
+- ✅ **Milestone C:** Unit tests + lint/format checks + GitHub Actions CI workflow.
+- ✅ **Milestone D (docs subset):** Added model card, case study, and open-source license.
 
 ## Project Structure
 
-```
-src/
-├── data_processing.py
-├── feature_extraction.py
-├── embeddings.py
-├── train.py
-├── zsl_inference.py
-└── evaluation.py
+```text
+.
+├── configs/
+│   └── baseline.yaml
+├── docs/
+│   ├── PORTFOLIO_UPGRADE_PLAN.md
+│   ├── case-study.md
+│   └── model-card.md
+├── reports/
+│   ├── figures/
+│   └── metrics/
+├── src/
+│   └── bczsl/
+│       ├── __init__.py
+│       ├── config.py
+│       ├── data_processing.py
+│       ├── embeddings.py
+│       ├── evaluation.py
+│       ├── feature_extraction.py
+│       ├── train.py
+│       └── zsl_inference.py
+├── tests/
+├── .github/workflows/ci.yml
+├── pyproject.toml
+├── requirements.txt
+└── LICENSE
 ```
 
----
-
-## How to Run
+## Setup
 
 ```bash
-pip install -r requirements.txt
-python src/train.py
-python src/zsl_inference.py
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m pip install pytest ruff black
 ```
 
----
+## Run Baseline (Config + CLI)
 
-## Key Learnings
+```bash
+# Windows PowerShell
+$env:PYTHONPATH="src"
+python -m bczsl.train --config configs/baseline.yaml --synthetic
+python -m bczsl.zsl_inference --config configs/baseline.yaml --synthetic
+```
 
-- Alignment between visual and semantic embedding spaces  
-- Transfer learning for robust feature extraction  
-- Modular pipeline design for machine learning workflows  
-- Zero-shot inference strategy for unseen class prediction  
-- Working under computational constraints  
+Artifacts are written to:
+- `reports/metrics/train_metrics.json`
+- `reports/metrics/inference_metrics.json`
+- `reports/metrics/classification_report.txt`
+- `reports/figures/confusion_matrix.png`
 
----
+## Quality Checks
 
-## Future Improvements
+```bash
+python -m ruff check .
+python -m black --check .
+PYTHONPATH=src python -m pytest -q
+```
 
-- Replace Logistic Regression with deep metric learning  
-- Use contextual embeddings (e.g., BERT-based representations)  
-- Deploy inference API using FastAPI  
-- Perform systematic hyperparameter optimization  
-- Explore ensemble methods for improved robustness  
+## PowerShell file-path tip
+Typing a path alone (for example `reports\metrics\classification_report.txt`) is treated as a command.
+Use `Get-Content <path>` or `ii <path>` instead.

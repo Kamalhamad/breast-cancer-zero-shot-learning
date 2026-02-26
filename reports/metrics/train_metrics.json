@@ -1,0 +1,9 @@
+{
+  "seed": 42,
+  "synthetic_mode": true,
+  "n_samples": 160,
+  "n_features": 32,
+  "train_accuracy": 0.675,
+  "model_path": "models/logreg_model.joblib",
+  "encoder_path": "models/label_encoder.joblib"
+}
