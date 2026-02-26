@@ -1,5 +1,5 @@
-import numpy as np
-from embeddings import cosine_similarity
+﻿import numpy as np
+from .embeddings import cosine_similarity
 
 
 def predict_unseen(feature_vector, classifier, encoder, class_embeddings):
