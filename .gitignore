@@ -1,0 +1,10 @@
+﻿.venv/
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+.DS_Store
+reports/
+models/
+data/raw/
+data/processed/
