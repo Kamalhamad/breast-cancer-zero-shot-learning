@@ -72,3 +72,9 @@ PYTHONPATH=src python -m pytest -q
 ## PowerShell file-path tip
 Typing a path alone (for example `reports\metrics\classification_report.txt`) is treated as a command.
 Use `Get-Content <path>` or `ii <path>` instead.
+
+
+## Community & Governance
+- Contribution guide: `CONTRIBUTING.md`
+- Security policy: `SECURITY.md`
+- PR template and issue templates: `.github/`
